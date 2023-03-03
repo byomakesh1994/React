@@ -1,0 +1,78 @@
+{
+  "users": [
+    {
+      "name": "test",
+      "email": "test",
+      "select": "Odisha",
+      "date": "2023-02-01",
+      "checkbox": [
+        "CSS",
+        "HTML",
+        "JAVASCRIPT",
+        "BOOTSTRAP"
+      ],
+      "radio": "Reactjs",
+      "rate": "4",
+      "id": 1
+    },
+    {
+      "name": "test2",
+      "email": "test2",
+      "select": "Odisha",
+      "date": "2023-02-01",
+      "checkbox": [
+        "CSS",
+        "HTML",
+        "JAVASCRIPT",
+        "BOOTSTRAP"
+      ],
+      "radio": "Reactjs",
+      "rate": "4",
+      "id": 2
+    },
+    {
+      "name": "test3",
+      "email": "test3",
+      "select": "Odisha",
+      "date": "2023-02-01",
+      "checkbox": [
+        "CSS",
+        "HTML",
+        "JAVASCRIPT",
+        "BOOTSTRAP"
+      ],
+      "radio": "Reactjs",
+      "rate": "4",
+      "id": 3
+    },
+    {
+      "name": "test4",
+      "email": "test4",
+      "select": "Delhi",
+      "date": "2023-02-01",
+      "checkbox": [
+        "CSS",
+        "HTML",
+        "JAVASCRIPT",
+        "BOOTSTRAP"
+      ],
+      "radio": "Reactjs",
+      "rate": "4",
+      "id": 4
+    },
+    {
+      "name": "test5",
+      "email": "test5",
+      "select": "Chennai",
+      "date": "2023-03-16",
+      "checkbox": [
+        "CSS",
+        "HTML",
+        "BOOTSTRAP"
+      ],
+      "radio": "Angular",
+      "rate": "5",
+      "id": 5
+    }
+  ]
+}
