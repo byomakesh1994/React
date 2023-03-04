@@ -132,9 +132,24 @@
 //...admin dashboard..........
 
 import React from "react";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "./Ecom/components/Homepage";
+import { Products } from "./Ecom/container/Products";
+import { Orders } from "./Ecom/container/Orders";
+import { Posts } from "./Ecom/container/Posts";
+import { Quotes } from "./Ecom/container/Quotes";
 const App = () => {
-  return <div>App</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/products" element={<Products />}></Route>
+        <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/Posts" element={<Posts />}></Route>
+        <Route path="/quotes" element={<Quotes />}></Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
