@@ -36,30 +36,30 @@
 
 // ......FORM........
 
-import "./App.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Listuser from "./Form/Pages/Antd/Listuser";
-import Adduser from "./Form/Pages/Adduser";
-import EditUser from "./Form/Pages/Edituser";
-import NotFound from "./Form/Component/NotFound";
+// import "./App.css";
+// import "../node_modules/bootstrap/dist/css/bootstrap.css";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Listuser from "./Form/Pages/Antd/Listuser";
+// import Adduser from "./Form/Pages/Adduser";
+// import EditUser from "./Form/Pages/Edituser";
+// import NotFound from "./Form/Component/NotFound";
 
-function App() {
-  return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Listuser />}></Route>
-          <Route path="/add" element={<Adduser />}></Route>
-          <Route path="/edit/:id" element={<EditUser />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </Router>
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div>
+//       <Router>
+//         <Routes>
+//           <Route path="/" element={<Listuser />}></Route>
+//           <Route path="/add" element={<Adduser />}></Route>
+//           <Route path="/edit/:id" element={<EditUser />}></Route>
+//           <Route path="*" element={<NotFound />}></Route>
+//         </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
 
-export default App;
+//export default App;
 
 //........REDUX...........
 
@@ -128,3 +128,13 @@ export default App;
 // }
 
 // export default App;
+
+//...admin dashboard..........
+
+import React from "react";
+
+const App = () => {
+  return <div>App</div>;
+};
+
+export default App;
