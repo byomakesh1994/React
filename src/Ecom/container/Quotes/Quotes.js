@@ -1,7 +1,8 @@
 import React from "react";
+import Layout from "../../components/Layout";
 
 const Quotes = () => {
-  return <div>Quotes</div>;
+  return <Layout>Quotes</Layout>;
 };
 
 export default Quotes;

@@ -22,6 +22,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import LocalMallSharpIcon from "@mui/icons-material/LocalMallSharp";
 import { Link } from "react-router-dom";
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -69,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const Homepage = () => {
+const Homepage = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -140,7 +141,7 @@ const Homepage = () => {
                 <ListItemText primary="Products" />
               </ListItemButton>
             </ListItem>
-          </Link>{" "}
+          </Link>
           <Link to="/orders">
             <ListItem disablePadding>
               <ListItemButton>
@@ -150,7 +151,7 @@ const Homepage = () => {
                 <ListItemText primary="Orders" />
               </ListItemButton>
             </ListItem>
-          </Link>{" "}
+          </Link>
           <Link to="/posts">
             <ListItem disablePadding>
               <ListItemButton>
@@ -174,7 +175,7 @@ const Homepage = () => {
         </List>
         <Divider />
       </Drawer>
-      <Main open={open}>
+      {/* <Main open={open}>
         <DrawerHeader />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -205,7 +206,8 @@ const Homepage = () => {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </Main>
+      </Main> */}
+      {/* {children} */}
     </Box>
   );
 };
