@@ -137,8 +137,6 @@ import Homepage from "./Ecom/components/Homepage";
 import { Products } from "./Ecom/container/Products";
 import { ProductsDetails } from "./Ecom/container/Products";
 import { Orders } from "./Ecom/container/Orders";
-import { Posts } from "./Ecom/container/Posts";
-import { Quotes } from "./Ecom/container/Quotes";
 import { User } from "./Ecom/container/User";
 const App = () => {
   return (
@@ -148,8 +146,6 @@ const App = () => {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductsDetails />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
-        <Route path="/Posts" element={<Posts />}></Route>
-        <Route path="/quotes" element={<Quotes />}></Route>
         <Route path="/user" element={<User />}></Route>
       </Routes>
     </Router>

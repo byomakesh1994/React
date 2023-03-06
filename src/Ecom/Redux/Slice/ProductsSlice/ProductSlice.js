@@ -5,7 +5,6 @@ import { GetProducts } from "../../Action/Products/GetProduct";
 const initialState = {
   loading: STATUS.LOADING,
   products: [],
-  product: {},
   error: STATUS.ERROR,
 };
 

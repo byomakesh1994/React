@@ -19,27 +19,18 @@ const Header = () => {
             <Link underline="hover" color="inherit" to="/products">
               Products
             </Link>
-            <Link
-              underline="hover"
-              color="text.primary"
-              to="/orders"
-              aria-current="page"
-            >
+            <Link underline="hover" color="text.primary" to="/orders">
               Orders
             </Link>
-            <Link
-              underline="hover"
-              color="text.primary"
-              to="/posts"
-              aria-current="page"
-            >
-              Posts
+            <Link underline="hover" color="text.primary" to="/user">
+              User
             </Link>
           </Breadcrumbs>
           <IconButton sx={{ p: 0 }}>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Toolbar>
+        <div></div>
       </AppBar>
     </Box>
   );

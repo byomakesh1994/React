@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import { GetProducts } from "../../Redux/Action/Products/GetProduct";
@@ -14,21 +14,34 @@ import { Row, Col } from "antd";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
-import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
+import Pagination from "@mui/material/Pagination";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Products = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products.products);
+
+  // const product = useSelector((state) => state.products);
+  // console.log(product);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(10);
 
   const productLists = () => {
-    let args = `?limit=0`;
+    let args = `?limit=${count}`;
     dispatch(GetProducts(args));
   };
-
+  // const categoryLists = () => {
+  //   let args = `categories`;
+  //   dispatch(GetProducts(args));
+  // };
   useEffect(() => {
     productLists();
+    //  categoryLists();
   }, []);
   //debounce function
   // const debounce=(fn, delay) =>{
@@ -43,6 +56,17 @@ const Products = () => {
   const searchInput = () => {
     let args = `search?q=${search}`;
     dispatch(GetProducts(args));
+  };
+
+  const handleChange = (e, value) => {
+    setPage(value);
+    console.log(e);
+    let limit = page * count;
+    let skip = limit - count;
+    let args = `?limit=${limit}&skip=${skip}`;
+    // dispatch(GetProducts(args));
+    console.log(page);
+    console.log(skip, limit);
   };
 
   return (
@@ -63,6 +87,28 @@ const Products = () => {
           onChange={(e) => searchInput(setSearch(e.target.value))}
         />
       </div>
+      {/* <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={age}
+            label="Age"
+            onChange={handleChange}
+          >
+            {product?.loading ? (
+              <CircularProgress style={{ margin: "auto" }} />
+            ) : (
+              product?.products?.map((el, i) => (
+                <MenuItem value={el} key={i}>
+                  {el}
+                </MenuItem>
+              ))
+            )}
+          </Select>
+        </FormControl>
+      </Box> */}
       <Row gutter={[10, 10]} space={10} className="gutter-row">
         {!products ? (
           <CircularProgress style={{ margin: "auto" }} />
@@ -141,9 +187,10 @@ const Products = () => {
           ))
         )}
       </Row>
+      <Typography>Page: {page}</Typography>
+      <Pagination count={count} page={page} onChange={(e) => handleChange(e)} />
     </Layout>
   );
 };
 
 export default Products;
-//debounce function?
