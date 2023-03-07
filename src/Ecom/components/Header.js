@@ -30,7 +30,6 @@ const Header = () => {
             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Toolbar>
-        <div></div>
       </AppBar>
     </Box>
   );

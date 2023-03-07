@@ -138,6 +138,7 @@ import { Products } from "./Ecom/container/Products";
 import { ProductsDetails } from "./Ecom/container/Products";
 import { Orders } from "./Ecom/container/Orders";
 import { User } from "./Ecom/container/User";
+import Carts from "./Ecom/container/Orders/Carts";
 const App = () => {
   return (
     <Router>
@@ -146,6 +147,7 @@ const App = () => {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/products/:id" element={<ProductsDetails />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/carts/user/:id" element={<Carts />}></Route>
         <Route path="/user" element={<User />}></Route>
       </Routes>
     </Router>

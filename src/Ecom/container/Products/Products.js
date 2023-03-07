@@ -15,11 +15,11 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
 import Pagination from "@mui/material/Pagination";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+// import Box from "@mui/material/Box";
+// import InputLabel from "@mui/material/InputLabel";
+// import MenuItem from "@mui/material/MenuItem";
+// import FormControl from "@mui/material/FormControl";
+// import Select from "@mui/material/Select";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const Products = () => {
 
   // const product = useSelector((state) => state.products);
   // console.log(product);
+
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
@@ -87,6 +88,7 @@ const Products = () => {
           onChange={(e) => searchInput(setSearch(e.target.value))}
         />
       </div>
+
       {/* <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Age</InputLabel>
