@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import { GetProducts } from "../../Redux/Action/Products/GetProduct";
+import { SelectCategory } from "../../Redux/Action/Products/SelectProduct";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,35 +16,40 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
 import Pagination from "@mui/material/Pagination";
-// import Box from "@mui/material/Box";
-// import InputLabel from "@mui/material/InputLabel";
-// import MenuItem from "@mui/material/MenuItem";
-// import FormControl from "@mui/material/FormControl";
-// import Select from "@mui/material/Select";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Products = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products.products);
-
-  // const product = useSelector((state) => state.products);
-  // console.log(product);
+  const p = useSelector((state) => state.products.products);
+  const [productcategory, setProductcategory] = useState("");
+  const product = useSelector((state) => state.categories);
+  const { category, loading } = product;
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(12);
+  const total = Math.ceil(p?.total / count);
 
   const productLists = () => {
-    let args = `?limit=${count}`;
+    let num = page - 1;
+    let skip = num * count;
+    let args = `?limit=${count}&skip=${skip}`;
     dispatch(GetProducts(args));
   };
-  // const categoryLists = () => {
-  //   let args = `categories`;
-  //   dispatch(GetProducts(args));
-  // };
+  const categoryLists = () => {
+    let args = `/categories`;
+    dispatch(SelectCategory(args));
+  };
   useEffect(() => {
     productLists();
-    //  categoryLists();
-  }, []);
+    categoryLists();
+  }, [page]);
+
   //debounce function
   // const debounce=(fn, delay) =>{
   //   let timer;
@@ -59,15 +65,18 @@ const Products = () => {
     dispatch(GetProducts(args));
   };
 
-  const handleChange = (e, value) => {
-    setPage(value);
-    console.log(e);
-    let limit = page * count;
-    let skip = limit - count;
-    let args = `?limit=${limit}&skip=${skip}`;
-    // dispatch(GetProducts(args));
-    console.log(page);
-    console.log(skip, limit);
+  const helloInput = (event) => {
+    if (event.keyCode === 8) {
+      let num = page - 1;
+      let skip = num * count;
+      let args = `?limit=${count}&skip=${skip}`;
+      dispatch(GetProducts(args));
+    }
+  };
+
+  const handleChange = (event) => {
+    setProductcategory(event.target.value);
+    console.log(productcategory);
   };
 
   return (
@@ -82,27 +91,38 @@ const Products = () => {
             height: "30px",
           }}
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Search Google Maps"
+          placeholder="Search Products"
           name="search"
           value={search.name}
           onChange={(e) => searchInput(setSearch(e.target.value))}
+          onKeyUp={(e) => helloInput(e)}
         />
       </div>
 
-      {/* <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+      <Box
+        sx={{
+          minWidth: 120,
+          marginTop: "10px",
+          marginLeft: "10px",
+          marginBottom: "20px",
+        }}
+      >
+        <FormControl style={{ width: "300px" }}>
+          <InputLabel id="demo-simple-select-label">
+            Product Category
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            // value={age}
-            label="Age"
+            label="Product Category"
+            value={productcategory}
             onChange={handleChange}
           >
-            {product?.loading ? (
-              <CircularProgress style={{ margin: "auto" }} />
+            {!category ? (
+              <CircularProgress />
             ) : (
-              product?.products?.map((el, i) => (
+              category.length > 0 &&
+              category?.map((el, i) => (
                 <MenuItem value={el} key={i}>
                   {el}
                 </MenuItem>
@@ -110,7 +130,7 @@ const Products = () => {
             )}
           </Select>
         </FormControl>
-      </Box> */}
+      </Box>
       <Row gutter={[10, 10]} space={10} className="gutter-row">
         {!products ? (
           <CircularProgress style={{ margin: "auto" }} />
@@ -127,7 +147,7 @@ const Products = () => {
                       marginLeft: "20px",
                       padding: "30px",
                     }}
-                    key={product.id}
+                    key={product.id.toString()}
                   >
                     <CardHeader
                       avatar={
@@ -172,7 +192,7 @@ const Products = () => {
                         variant="body2"
                         color="text.secondary"
                       >
-                        ${product.price}.00
+                        $ {product.price}.00
                       </Typography>
                       <Typography
                         style={{ overflow: "hidden" }}
@@ -190,7 +210,12 @@ const Products = () => {
         )}
       </Row>
       <Typography>Page: {page}</Typography>
-      <Pagination count={count} page={page} onChange={(e) => handleChange(e)} />
+      <Pagination
+        count={total}
+        defaultPage={page}
+        siblingCount={2}
+        onChange={(event, value) => setPage(value)}
+      />
     </Layout>
   );
 };

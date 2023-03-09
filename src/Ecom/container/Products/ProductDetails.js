@@ -51,6 +51,10 @@ const ProductDetails = () => {
   const cancelHandler = () => {
     setOpen(false);
   };
+  const handleBack = () => {
+    navigate("/products");
+  };
+
   return (
     <Layout>
       <Typography variant="body2" color="text.secondary">
@@ -132,6 +136,14 @@ const ProductDetails = () => {
                 onClick={() => deleteHandler(product.id)}
               >
                 Delete
+              </Button>
+              <Button
+                color="warning"
+                ariant="contained"
+                size="small"
+                onClick={handleBack}
+              >
+                Back
               </Button>
             </CardActions>
           </Card>

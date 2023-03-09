@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import { GetUserAction } from "../../Redux/Action/Users/GetUserAction";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -18,25 +18,30 @@ import moment from "moment/moment";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
+import Pagination from "@mui/material/Pagination";
 
 const User = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
+  const total = Math.ceil(users?.total / count);
+
   const UsersList = () => {
-    let args = `?limit=${count}`;
+    let num = page - 1;
+    let skip = num * count;
+    let args = `?limit=${count}&skip=${skip}`;
     dispatch(GetUserAction(args));
   };
 
   useEffect(() => {
     UsersList();
-  }, []);
+  }, [page]);
 
   return (
     <Layout>
       <h1>List of User</h1>
-      {!users ? (
+      {!users?.users ? (
         <CircularProgress style={{ margin: "auto" }} />
       ) : (
         <Paper sx={{ width: "100%" }}>
@@ -125,6 +130,12 @@ const User = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          <Typography>Page: {page}</Typography>
+          <Pagination
+            count={total}
+            page={page}
+            onChange={(event, value) => setPage(value)}
+          />
         </Paper>
       )}
     </Layout>
